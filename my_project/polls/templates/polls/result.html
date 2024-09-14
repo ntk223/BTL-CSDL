@@ -1,0 +1,14 @@
+{% extends "polls/base.html" %} 
+    {% block content %}
+    {%if qs%}
+        {{qs.question_text}}
+        <ul>
+            {%for item in qs.choice_set.all%}
+                <li>{{item.choice_text}}: {{item.votes}} vote{{item.votes|pluralize}}</li>
+            {%endfor%}
+        </ul>
+    {%else%}
+        <h1>No questions are available.</h1>
+    {%endif%}
+    <a href="{%url 'detail' qs.id %}">vote again</a>
+{% endblock %}
